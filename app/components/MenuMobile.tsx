@@ -14,7 +14,7 @@ const subMenuData = [
   { id: 3, name: "Running shoes", doc_count: 64 },
   { id: 4, name: "Football shoes", doc_count: 107 },
 ];
-function Menu({
+function MenuMobile({
   showCatMenu,
   setShowCatMenu,
 }: {
@@ -61,4 +61,4 @@ function Menu({
   );
 }
 
-export default Menu;
+export default MenuMobile;
