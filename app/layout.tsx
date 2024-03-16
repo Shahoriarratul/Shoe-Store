@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "Online shoe store",
+  title: "Foot Jewel ",
   description: "Online shoe store",
 };
 
@@ -22,6 +22,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </Head>
+
       <body>{children}</body>
     </html>
   );

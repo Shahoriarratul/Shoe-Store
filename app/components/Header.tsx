@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Wrapper from "./Wrapper";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,6 +15,22 @@ function Header() {
   const [showCatMenu, setShowCatMenu] = useState(false);
   const [show, setShow] = useState("transtalate-y-0");
   const [lastScrollY, setLastScrollY] = useState(0);
+  const controlNavbar = () => {
+    if (window.scrollY > 200) {
+      if (window.scrollY > lastScrollY && !mobileMenu) {
+        setShow("-translate-y-[80px]");
+      } else {
+        setShow("shadow-sm");
+      }
+    } else {
+      setShow("transtalate-y-0");
+    }
+    setLastScrollY(window.scrollY);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+    return () => window.removeEventListener("scroll", controlNavbar);
+  }, [lastScrollY]);
 
   return (
     <header
@@ -26,11 +42,18 @@ function Header() {
             width={40}
             height={40}
             src="/logo.svg"
-            className=" w-[40px] md:w-[60px]"
+            className=" w-[100px] md:w-[130px]"
             alt="Logo"
           />
         </Link>
         <Menu showCatMenu={showCatMenu} setShowCatMenu={setShowCatMenu} />
+        {mobileMenu && (
+          <MenuMobile
+            showCatMenu={showCatMenu}
+            setShowCatMenu={setShowCatMenu}
+            setMobileMenu={setMobileMenu}
+          />
+        )}
         <div className="flex items-center gap-2 text-black">
           <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/0.05 cursor-pointer relative">
             <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
@@ -38,12 +61,14 @@ function Header() {
               5
             </div>
           </div>
+          {/* Icon ends */}
           <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/0.05 cursor-pointer relative">
             <BsCart className="text-[15px] md:text-[20px]" />
             <div className="h-[14px] md:h-[18px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[px]">
               5
             </div>
           </div>
+          {/* Icon ends */}
           {/* Mobile Icon Start */}
           <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative -mr-2">
             {mobileMenu ? (
