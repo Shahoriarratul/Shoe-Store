@@ -3,7 +3,7 @@ import Wrapper from "@/app/components/Wrapper";
 
 function ProductDetails() {
   return (
-    <div className="w-full md:py-20">
+    <div className="w-full md:py-20 ">
       <Wrapper>
         <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
           {/* left column start */}
